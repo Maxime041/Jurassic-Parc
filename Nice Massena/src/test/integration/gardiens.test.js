@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../app');
-const Gardiens = require('../../model/gardiens');
 const mongoose = require('mongoose');
+const Gardiens = require('../../model/gardiens');
 
 describe('Gardiens API', () => {
   describe('GET /api/gardiens', () => {
