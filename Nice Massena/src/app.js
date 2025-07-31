@@ -6,6 +6,7 @@ const connectDB = require('./config/database');
 const gardiensRoutes = require('./Routes/Gardiens');
 const errorHandler = require('./middleware/errorHandler');
 const DinosauresRoutes = require('./routes/Dinosaures');
+const IncidentsRoutes = require('./routes/Incidents');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -26,7 +27,7 @@ app.get('/health', (req, res) => {
 
 app.use('/api/gardiens', gardiensRoutes);
 app.use('/api/dinosaures', DinosauresRoutes);
-
+app.use('/api/incidents', IncidentsRoutes);
 
 // Error handling
 app.use(errorHandler);
