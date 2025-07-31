@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const parkMassenaSchema = new mongoose.Schema({
+const GardiensSchema = new mongoose.Schema({
   id: {
     type: String,
     required: true,
@@ -10,24 +10,21 @@ const parkMassenaSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  species: {
+  specialty: {
     type: String,
+    enum: ['carnivores', 'herbivores', 'medical', 'security'],
     required: true
   },
-  enclosure: {
+  sector: {
     type: String,
+    enum: ['A1', 'B2', 'C3', 'D4'],
     required: true
   },
-  healthStatus: {
-    type: String,
-    enum: ['healthy', 'sick', 'critical'],
+  available: {
+    type: Boolean,
     required: true
   },
-  lastFedAt: {
-    type: Date,
-    required: true
-  },
-  dangerLevel: {
+  experience: {
     type: Number,
     min: 1,
     max: 10,
@@ -35,4 +32,4 @@ const parkMassenaSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('ParkMassena', parkMassenaSchema);
+module.exports = mongoose.model('Gardiens', GardiensSchema);
