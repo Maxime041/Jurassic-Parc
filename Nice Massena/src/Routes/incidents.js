@@ -17,9 +17,9 @@ router.get('/:id', async function (req, res, next) {
   try {
     const incident = await Incidents.findById(req.params.id);
     if (incident) {
-      res.json({ result: true, incident: incident });
+      res.json({ result: true, incident });
     } else {
-      res.json({ result: false, error: "Incident non trouvé" });
+      res.status(404).json({ result: false, error: "Incident non trouvé" });
     }
   } catch (error) {
     next(error);
@@ -62,7 +62,7 @@ router.put('/:id', async function (req, res, next) {
     if (updatedIncident) {
       res.json({ result: true, message: "Incident mis à jour !", incident: updatedIncident });
     } else {
-      res.json({ result: false, error: "Incident non trouvé" });
+      return res.status(404).json({ result: false, error: "Incident non trouvé" });
     }
   } catch (error) {
     next(error);
@@ -76,7 +76,7 @@ router.delete('/:id', async function (req, res, next) {
     if (deletedIncident) {
       res.json({ result: true, message: "Incident supprimé !" });
     } else {
-      res.json({ result: false, error: "Incident non trouvé" });
+      return res.status(404).json({ result: false, error: "Incident non trouvé" });
     }
   } catch (error) {
     next(error);
