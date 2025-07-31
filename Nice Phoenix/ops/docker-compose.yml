@@ -7,10 +7,10 @@ services:
       dockerfile: ops/Dockerfile
 
     ports:
-      - "3002:3002"
+      - "3003:3003"
     environment:
       - NODE_ENV=production
-      - PORT=3002
+      - PORT=3003
       - MONGODB_URI=mongodb://mongodb:27017/nice-massena
     volumes:
       - ../:/app
