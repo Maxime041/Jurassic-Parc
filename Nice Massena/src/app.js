@@ -5,8 +5,8 @@ const helmet = require('helmet');
 const connectDB = require('./config/database');
 const gardiensRoutes = require('./Routes/Gardiens');
 const errorHandler = require('./middleware/errorHandler');
-const DinosauresRoutes = require('./routes/Dinosaures');
-const IncidentsRoutes = require('./routes/Incidents');
+const DinosauresRoutes = require('./Routes/Dinosaures');
+const IncidentsRoutes = require('./Routes/Incidents');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
