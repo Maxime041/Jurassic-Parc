@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  massena-api:
+    build:
+      context: ./Nice Massena
+      dockerfile: ops/Dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/massena-db
+    volumes:
+      - ./Nice Massena:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+
+  phoenix-api:
+    build:
+      context: ./Nice Phoenix
+      dockerfile: ops/Dockerfile
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/phoenix-db
+    volumes:
+      - ./Nice Phoenix:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
