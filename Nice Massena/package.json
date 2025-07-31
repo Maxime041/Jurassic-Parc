@@ -1,7 +1,7 @@
 {
   "name": "nice-massena",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "test": "jest --coverage"
@@ -15,6 +15,7 @@
     "express": "^5.1.0",
     "helmet": "^8.1.0",
     "jest": "^30.0.5",
-    "mongoose": "^8.17.0"
+    "mongoose": "^8.17.0",
+    "supertest": "^7.1.4"
   }
 }
