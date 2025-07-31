@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: ops/Dockerfile
+
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+      - MONGODB_URI=mongodb://mongodb:27017/nice-massena
+    volumes:
+      - ../:/app
+      - /app/node_modules
+
+  mongodb:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_DATABASE: nice-massena
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
