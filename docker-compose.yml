@@ -1,56 +1,42 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  massena-api:
-    build:
-      context: ./Nice Massena
-      dockerfile: ops/Dockerfile
-    container_name: massena-api
+  # Service qui utilise le docker-compose.yml de Nice Massena
+  massena-stack:
+    extends:
+      file: ./Nice Massena/ops/docker-compose.yml
+      service: api
+    container_name: massena-parc-api
     ports:
       - "3002:3002"
     environment:
       - NODE_ENV=production
       - PORT=3002
-      - MONGODB_URI=mongodb://massena-mongodb:27017/nice-massena
-    volumes:
-      - ./Nice Massena:/app
-      - /app/node_modules
-    depends_on:
-      - massena-mongodb
+      - MONGODB_URI=mongodb://mongodb:27017/nice-massena
 
-  massena-mongodb:
+  # Service qui utilise le docker-compose.yml de Nice Phoenix  
+  phoenix-stack:
+    extends:
+      file: ./Nice Phoenix/ops/docker-compose.yml
+      service: api
+    container_name: phoenix-parc-api
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production
+      - PORT=3003
+      - MONGODB_URI=mongodb://mongodb:27017/nice-phoenix
+
+  # MongoDB partagé pour les deux parcs
+  mongodb:
     image: mongo:7
-    container_name: massena-mongodb
+    container_name: mongodb-parcs
+    ports:
+      - "27017:27017"
     environment:
       - MONGO_INITDB_DATABASE=nice-massena
     volumes:
-      - massena_mongo_data:/data/db
-
-  phoenix-api:
-    build:
-      context: ./Nice Phoenix
-      dockerfile: ops/Dockerfile
-    container_name: phoenix-api
-    ports:
-      - "3003:3002"
-    environment:
-      - NODE_ENV=production
-      - PORT=3002
-      - MONGODB_URI=mongodb://phoenix-mongodb:27017/nice-phoenix
-    volumes:
-      - ./Nice Phoenix:/app
-      - /app/node_modules
-    depends_on:
-      - phoenix-mongodb
-
-  phoenix-mongodb:
-    image: mongo:7
-    container_name: phoenix-mongodb
-    environment:
-      - MONGO_INITDB_DATABASE=nice-phoenix
-    volumes:
-      - phoenix_mongo_data:/data/db
+      - mongodb_data:/data/db
 
 volumes:
-  massena_mongo_data:
-  phoenix_mongo_data:
+  mongodb_data:
