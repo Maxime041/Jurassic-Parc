@@ -5,13 +5,13 @@ FROM node:18
 WORKDIR /app
 
 # Copie des fichiers du projet dans le conteneur
-COPY package*.json ./
+COPY ../package*.json ./
 
 # Installation des dépendances
 RUN npm install
 
 # Copie du reste des fichiers dans le conteneur
-COPY . .
+COPY ../ .
 
 # Exposition du port utilisé par l'application 
 EXPOSE 3002
