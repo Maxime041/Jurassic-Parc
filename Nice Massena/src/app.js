@@ -3,15 +3,15 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const connectDB = require('./config/database');
-
+const gardiensRoutes = require('./Routes/Gardiens'); // Adjust path as needed
 
 const app = express();
 const PORT = process.env.PORT || 3002;
 
 // Middleware
-/*app.use(helmet());
+app.use(helmet());
 app.use(cors());
-app.use(express.json());*/
+app.use(express.json());
 
 // Connexion à la base de données
 connectDB();
@@ -20,6 +20,8 @@ connectDB();
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date() });
 });
+
+app.use('/api/gardiens', gardiensRoutes);
 
 /*app.use('/api/tasks', taskRoutes);*/
 
