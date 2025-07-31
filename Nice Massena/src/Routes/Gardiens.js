@@ -6,9 +6,9 @@ const Gardiens = require('../Model/Gardiens');
 router.get('/', async (req, res) => {
   try {
     const gardiens = await Gardiens.find();
-    res.json(gardiens);
+    res.json({ result: true, gardiens: gardiens });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ result: false, error: error.message });
   }
 });
 
@@ -17,11 +17,11 @@ router.get('/:id', async (req, res) => {
   try {
     const gardien = await Gardiens.findById(req.params.id);
     if (!gardien) {
-      return res.status(404).json({ error: 'Gardien not found' });
+      return res.status(404).json({ result: false, error: 'Gardien non trouvé' });
     }
-    res.json(gardien);
+    res.json({ result: true, gardien: gardien });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ result: false, error: error.message });
   }
 });
 
@@ -30,9 +30,9 @@ router.post('/', async (req, res) => {
   try {
     const gardien = new Gardiens(req.body);
     await gardien.save();
-    res.status(201).json(gardien);
+    res.status(201).json({ result: true, gardien: gardien });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ result: false, error: error.message });
   }
 });
 
@@ -45,11 +45,11 @@ router.put('/:id', async (req, res) => {
       { new: true, runValidators: true }
     );
     if (!gardien) {
-      return res.status(404).json({ error: 'Gardien not found' });
+      return res.status(404).json({ result: false, error: 'Gardien non trouvé' });
     }
-    res.json(gardien);
+    res.json({ result: true, message: 'Gardien mis à jour !', gardien: gardien });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ result: false, error: error.message });
   }
 });
 
@@ -58,11 +58,11 @@ router.delete('/:id', async (req, res) => {
   try {
     const gardien = await Gardiens.findByIdAndDelete(req.params.id);
     if (!gardien) {
-      return res.status(404).json({ error: 'Gardien not found' });
+      return res.status(404).json({ result: false, error: 'Gardien non trouvé' });
     }
-    res.json({ message: 'Gardien deleted successfully' });
+    res.json({ result: true, message: 'Gardien supprimé !' });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ result: false, error: error.message });
   }
 });
 
