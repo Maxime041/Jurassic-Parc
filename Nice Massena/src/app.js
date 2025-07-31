@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const connectDB = require('./config/database');
-const gardiensRoutes = require('./Routes/Gardiens'); // Adjust path as needed
+const gardiensRoutes = require('./routes/gardiens');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
