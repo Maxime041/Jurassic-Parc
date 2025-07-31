@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const GardiensSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true
-  },
+
   name: {
     type: String,
     required: true

@@ -3,9 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const connectDB = require('./config/database');
+const gardiensRoutes = require('./Routes/Gardiens');
 const errorHandler = require('./middleware/errorHandler');
 const DinosauresRoutes = require('./routes/Dinosaures');
-
 
 const app = express();
 const PORT = process.env.PORT || 3002;
@@ -23,7 +23,10 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date() });
 });
 
+
+app.use('/api/gardiens', gardiensRoutes);
 app.use('/api/dinosaures', DinosauresRoutes);
+
 
 // Error handling
 app.use(errorHandler);
