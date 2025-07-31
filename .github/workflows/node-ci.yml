@@ -1,52 +1,14 @@
-name: CI Pipeline for Both APIs
+name: CI Root - Call Massena & Phoenix
 
 on:
   push:
-    branches: [ "main", "staging", "dev" ]
+    branches: [ main, dev, staging ]
   pull_request:
-    branches: [ "main", "staging", "dev" ]
-  workflow_dispatch:
+    branches: [ main, dev, staging ]
 
 jobs:
+  nice-massena:
+    uses: ./Nice Massena/ops/github/workflows/node-ci.yml
 
-  build_nice_massena:
-    name: Build and Test Nice Massena API
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          path: nice-massena
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        working-directory: nice-massena
-        run: npm install
-      - name: Run tests
-        working-directory: nice-massena
-        run: npm test
-      - name: Build Docker image for Nice Massena
-        working-directory: nice-massena
-        run: docker build -t nice-massena-api .
-
-  build_nice_phoenix:
-    name: Build and Test Nice Phoenix API
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          path: nice-phoenix
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        working-directory: nice-phoenix
-        run: npm install
-      - name: Run tests
-        working-directory: nice-phoenix
-        run: npm test
-      - name: Build Docker image for Nice Phoenix
-        working-directory: nice-phoenix
-        run: docker build -t nice-phoenix-api .
+  nice-phoenix:
+    uses: ./Nice Phoenix/ops/github/workflows/node-ci.yml
