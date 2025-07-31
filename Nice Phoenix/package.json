@@ -1,0 +1,21 @@
+{
+  "name": "nice-massena",
+  "version": "1.0.0",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jest": "^30.0.5",
+    "mongoose": "^8.17.0",
+    "supertest": "^7.1.4"
+  }
+}
