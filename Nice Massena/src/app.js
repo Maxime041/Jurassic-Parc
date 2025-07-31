@@ -28,6 +28,7 @@ app.get('/health', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
+  console.log(`Access at: http://localhost:${PORT}/health`);
 });
 
 module.exports = app;
