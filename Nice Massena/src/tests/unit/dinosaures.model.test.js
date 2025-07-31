@@ -1,4 +1,4 @@
-const Dinosaures = require('../../model/Dinosaures');
+const Dinosaures = require('../../model/dinosaures');
 
 describe('Dinosaures Model - Unitaire', () => {
   it('devrait valider un dinosaure valide', () => {

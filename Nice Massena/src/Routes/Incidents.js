@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Incidents = require('../Model/Incidents');
+const Incidents = require('../model/incidents');
 
 // Get /api/incidents
 router.get('/', async function (req, res, next) {
