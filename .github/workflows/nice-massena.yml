@@ -14,10 +14,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: Nice Massena
-
     steps:
       - uses: actions/checkout@v4
 
@@ -28,9 +24,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: "Nice Massena"
 
       - name: Run tests
         run: npm test
+        working-directory: "Nice Massena"
 
       - name: Build Docker image
         run: docker build -t nice-massena-api -f ops/Dockerfile .
+        working-directory: "Nice Massena"
