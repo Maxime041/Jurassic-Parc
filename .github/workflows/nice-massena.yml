@@ -3,12 +3,9 @@ name: API Parc 1 - Nice Massena
 on:
   push:
     branches: [ main, dev, staging ]
-    paths:
-      - 'Nice Massena/**'
   pull_request:
     branches: [ main, dev, staging ]
-    paths:
-      - 'Nice Massena/**'
+  workflow_dispatch:
 
 jobs:
   build:
