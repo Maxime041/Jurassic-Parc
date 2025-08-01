@@ -11,5 +11,26 @@ on:
       - 'Nice Massena/**'
 
 jobs:
-  call-massena-workflow:
-    uses: ./Nice Massena/ops/github/workflows/node-ci.yml
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Nice Massena
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build Docker image
+        run: docker build -t nice-massena-api -f ops/Dockerfile .
