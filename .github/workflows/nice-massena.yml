@@ -23,13 +23,10 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install
-        working-directory: "Nice Massena"
+        run: cd "Nice Massena" && npm install
 
       - name: Run tests
-        run: npm test
-        working-directory: "Nice Massena"
+        run: cd "Nice Massena" && npm test
 
       - name: Build Docker image
-        run: docker build -t nice-massena-api -f ops/Dockerfile .
-        working-directory: "Nice Massena"
+        run: cd "Nice Massena" && docker build -t nice-massena-api -f ops/Dockerfile .
