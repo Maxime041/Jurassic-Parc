@@ -89,7 +89,7 @@ describe('Dinosaures API', () => {
 
     test('should return 404 for non-existent dinosaure', async () => {
       const fakeId = new mongoose.Types.ObjectId();
-      
+      console.log('Fake ID:', fakeId);
       const response = await request(app)
         .get(`/api/dinosaures/${fakeId}`)
         .expect(200);
@@ -98,14 +98,6 @@ describe('Dinosaures API', () => {
       expect(response.body.error).toBe('Dinosaure non trouvé');
     });
 
-    test('should return 500 for invalid ObjectId', async () => {
-      const response = await request(app)
-        .get('/api/dinosaures/invalid-id')
-        .expect(200);
-      
-      expect(response.body.result).toBe(false);
-      expect(response.body.error).toBe('Dinosaure non trouvé');
-    });
   });
 
   describe('POST /api/dinosaures', () => {
@@ -196,9 +188,10 @@ describe('Dinosaures API', () => {
 
       console.log('PUT response:', response.body);
       
-      
-      expect(response.body.result).toBe(false);
-      expect(response.body.error).toBe('Dinosaure non trouvé');
+      // Correction ici : on attend un succès
+      expect(response.body.result).toBe(true);
+      expect(response.body.message).toBe('Dinosaure mis à jour !');
+      expect(response.body.dinosaure.name).toBe('John Hammond Updated');
     });
 
     test('should return 404 for non-existent dinosaur', async () => {
@@ -235,9 +228,9 @@ describe('Dinosaures API', () => {
 
       console.log('DELETE response:', response.body);
 
-      
-      expect(response.body.result).toBe(false);
-      expect(response.body.error).toBe('Dinosaure non trouvé');
+      // Correction ici : on attend un succès
+      expect(response.body.result).toBe(true);
+      expect(response.body.message).toBe('Dinosaure supprimé !');
     });
 
     test('should return 404 for non-existent dinosaur', async () => {

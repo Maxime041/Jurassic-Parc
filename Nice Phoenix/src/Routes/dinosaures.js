@@ -15,7 +15,7 @@ router.get('/', async function (req, res, next) {
 // Get /api/dinosaures/:id
 router.get('/:id', async function (req, res, next) {
   try {
-    const dinosaure = await Dinosaures.findOne({ id: req.params.id });
+    const dinosaure = await Dinosaures.findById(req.params.id);
     if (dinosaure) {
       res.json({ result: true, dinosaure: dinosaure });
     } else {
@@ -48,8 +48,8 @@ router.post('/', async function (req, res, next) {
 // Put /api/dinosaures/:id
 router.put('/:id', async function (req, res, next) {
   try {
-    const updatedDinosaure = await Dinosaures.findOneAndUpdate(
-      { id: req.params.id },
+    const updatedDinosaure = await Dinosaures.findByIdAndUpdate(
+      req.params.id,
       {
         name: req.body.name,
         species: req.body.species,
@@ -73,7 +73,7 @@ router.put('/:id', async function (req, res, next) {
 // Delete /api/dinosaures/:id
 router.delete('/:id', async function (req, res, next) {
   try {
-    const deletedDinosaure = await Dinosaures.findOneAndDelete({ id: req.params.id });
+    const deletedDinosaure = await Dinosaures.findByIdAndDelete(req.params.id);
     if (deletedDinosaure) {
       res.json({ result: true, message: "Dinosaure supprimé !" });
     } else {
