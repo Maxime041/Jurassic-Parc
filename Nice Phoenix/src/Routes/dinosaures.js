@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Dinosaures = require('../model/dinosaures');
+const Dinosaures = require('../Model/dinosaures');
 
 // Get /api/dinosaures
 router.get('/', async function (req, res, next) {

@@ -1,7 +1,7 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 const app = require('../../app'); // Adjust path as needed
-const Dinosaures = require('../../model/dinosaures'); // Adjust path as needed
+const Dinosaures = require('../../Model/dinosaures'); // Adjust path as needed
 
 describe('Dinosaures API', () => {
   // Nettoyer la base de données avant et après chaque test

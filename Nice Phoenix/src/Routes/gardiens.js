@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Gardiens = require('../model/gardiens');
+const Gardiens = require('../Model/gardiens');
 
 // GET /api/gardiens
 router.get('/', async (req, res) => {

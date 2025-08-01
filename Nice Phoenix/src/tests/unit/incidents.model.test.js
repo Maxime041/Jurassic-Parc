@@ -1,4 +1,4 @@
-const Incidents = require('../../model/incidents');
+const Incidents = require('../../Model/incidents');
 
 describe('Incidents Model - Unitaire', () => {
   it('devrait valider un incident correct', () => {

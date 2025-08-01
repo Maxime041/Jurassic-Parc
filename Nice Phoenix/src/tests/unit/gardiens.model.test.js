@@ -1,4 +1,4 @@
-const Gardiens = require('../../model/gardiens');
+const Gardiens = require('../../Model/gardiens');
 
 describe('Gardiens Model - Unitaire', () => {
   it('devrait valider un gardien valide', () => {

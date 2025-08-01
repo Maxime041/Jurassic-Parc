@@ -3,10 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const connectDB = require('./config/database');
-const gardiensRoutes = require('./routes/gardiens');
+const gardiensRoutes = require('./Routes/gardiens');
 const errorHandler = require('./middleware/errorHandler');
-const DinosauresRoutes = require('./routes/dinosaures');
-const IncidentsRoutes = require('./routes/incidents');
+const DinosauresRoutes = require('./Routes/dinosaures');
+const IncidentsRoutes = require('./Routes/incidents');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
@@ -17,7 +17,9 @@ app.use(cors());
 app.use(express.json());
 
 // Connexion à la base de données
-connectDB();
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 // Routes
 app.get('/health', (req, res) => {

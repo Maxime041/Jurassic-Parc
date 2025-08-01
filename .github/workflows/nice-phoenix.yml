@@ -1,0 +1,29 @@
+name: API Parc 1 - Nice Phoenix
+
+on:
+  push:
+    branches: [ main, dev, staging ]
+  pull_request:
+    branches: [ main, dev, staging ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: cd "Nice Phoenix" && npm install
+
+      - name: Run tests
+        run: cd "Nice Phoenix" && npm test
+
+      - name: Build Docker image
+        run: cd "Nice Phoenix" && docker build -t nice-phoenix-api -f ops/Dockerfile .
