@@ -3,10 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const connectDB = require('./config/database');
-const gardiensRoutes = require('./routes/gardiens');
+const gardiensRoutes = require('./Routes/gardiens');
 const errorHandler = require('./middleware/errorHandler');
-const DinosauresRoutes = require('./routes/dinosaures');
-const IncidentsRoutes = require('./routes/incidents');
+const DinosauresRoutes = require('./Routes/dinosaures');
+const IncidentsRoutes = require('./Routes/incidents');
 
 const app = express();
 const PORT = process.env.PORT || 3002;
