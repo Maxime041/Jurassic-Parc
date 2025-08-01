@@ -17,5 +17,8 @@
     "jest": "^30.0.5",
     "mongoose": "^8.17.0",
     "supertest": "^7.1.4"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^10.1.4"
   }
 }
