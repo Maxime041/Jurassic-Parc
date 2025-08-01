@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../app');
 const mongoose = require('mongoose');
-const Gardiens = require('../../model/gardiens');
+const Gardiens = require('../../Model/gardiens');
 
 describe('Gardiens API', () => {
   // Nettoyer la base de données avant et après chaque test
